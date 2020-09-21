@@ -29,7 +29,9 @@ matrix,
 "\\boldsymbol{\\beta}") is an
 ![p](https://latex.codecogs.com/png.latex?p "p")-dimensional (including
 the intercept) parameter to estimate, and
-![\\boldsymbol{d}](https://latex.codecogs.com/png.latex?%5Cboldsymbol%7Bd%7D
+![\\boldsymbol{d}](https://latex.codecogs.com/p
+
+ng.latex?%5Cboldsymbol%7Bd%7D
 "\\boldsymbol{d}") is an ![m](https://latex.codecogs.com/png.latex?m
 "m")-dimensional vector. ![C](https://latex.codecogs.com/png.latex?C
 "C") and
@@ -51,6 +53,8 @@ H_1&: \\text{otherwise}
 Then this hypothesis can be expressed as
 
 ![](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0A0%20%26%201%20%26%200%20%26%201%20%5C%5C%0A0%20%26%200%20%26%201%20%26%200%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Cbeta_0%20%5C%5C%0A%5Cbeta_1%20%5C%5C%0A%5Cbeta_2%20%5C%5C%0A%5Cbeta_3%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%3D%20%0A%5Cbegin%7Bbmatrix%7D%0A0%20%5C%5C%0A3%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A)
+
+
 `clm` returns the F-statistic and p value associated with such test. It
 also returns the estimated
 ![\\sigma^2](https://latex.codecogs.com/png.latex?%5Csigma%5E2
