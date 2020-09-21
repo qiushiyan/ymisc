@@ -54,8 +54,8 @@ Then this hypothesis can be expressed as
 ![&#10;\\begin{bmatrix}&#10;0 & 1 & 0 & 1 \\\\&#10;0 & 0 & 1 & 0
 \\\\&#10;\\end{bmatrix}&#10;\\begin{bmatrix}&#10;\\beta\_0
 \\\\&#10;\\beta\_1 \\\\&#10;\\beta\_2 \\\\&#10;\\beta\_3
-&#10;\\end{bmatrix}&#10;= &#10;\\begin{bmatrix}&#10;0
-\\\\&#10;3&#10;\\end{bmatrix}&#10;](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0A0%20%26%201%20%26%200%20%26%201%20%5C%5C%0A0%20%26%200%20%26%201%20%26%200%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Cbeta_0%20%5C%5C%0A%5Cbeta_1%20%5C%5C%0A%5Cbeta_2%20%5C%5C%0A%5Cbeta_3%20%0A%5Cend%7Bbmatrix%7D%0A%3D%20%0A%5Cbegin%7Bbmatrix%7D%0A0%20%5C%5C%0A3%0A%5Cend%7Bbmatrix%7D%0A
+\\\\&#10;\\end{bmatrix}&#10;= &#10;\\begin{bmatrix}&#10;0 \\\\&#10;3
+\\\\&#10;\\end{bmatrix}&#10;](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0A0%20%26%201%20%26%200%20%26%201%20%5C%5C%0A0%20%26%200%20%26%201%20%26%200%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Cbeta_0%20%5C%5C%0A%5Cbeta_1%20%5C%5C%0A%5Cbeta_2%20%5C%5C%0A%5Cbeta_3%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%3D%20%0A%5Cbegin%7Bbmatrix%7D%0A0%20%5C%5C%0A3%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A
 "
 \\begin{bmatrix}
 0 & 1 & 0 & 1 \\\\
@@ -65,12 +65,12 @@ Then this hypothesis can be expressed as
 \\beta_0 \\\\
 \\beta_1 \\\\
 \\beta_2 \\\\
-\\beta_3 
+\\beta_3 \\\\
 \\end{bmatrix}
 = 
 \\begin{bmatrix}
 0 \\\\
-3
+3 \\\\
 \\end{bmatrix}
 ")  
 `clm` returns the F-statistic and p value associated with such test. It

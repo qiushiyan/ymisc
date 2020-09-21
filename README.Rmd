@@ -54,12 +54,12 @@ $$
 \beta_0 \\
 \beta_1 \\
 \beta_2 \\
-\beta_3 
+\beta_3 \\
 \end{bmatrix}
 = 
 \begin{bmatrix}
 0 \\
-3
+3 \\
 \end{bmatrix}
 $$
 `clm` returns the F-statistic and p value associated with such test. It also returns the estimated $\sigma^2$ and $\boldsymbol{\beta}$ under $H_0$, i.e. the equality constrained model. 
@@ -123,7 +123,6 @@ path <- tempdir()
 titanic <- as.data.frame(Titanic)
 titanic <- titanic[rep(1:nrow(titanic), titanic$Freq), -5]
 dplyr::count(titanic, Sex, Age)
-
 ```
 
 Now use `group_write` to output this 4 groups into different csv files: 
