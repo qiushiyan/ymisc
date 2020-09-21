@@ -29,9 +29,7 @@ matrix,
 "\\boldsymbol{\\beta}") is an
 ![p](https://latex.codecogs.com/png.latex?p "p")-dimensional (including
 the intercept) parameter to estimate, and
-![\\boldsymbol{d}](https://latex.codecogs.com/p
-
-ng.latex?%5Cboldsymbol%7Bd%7D
+![\\boldsymbol{d}](https://latex.codecogs.com/png.latex?%5Cboldsymbol%7Bd%7D
 "\\boldsymbol{d}") is an ![m](https://latex.codecogs.com/png.latex?m
 "m")-dimensional vector. ![C](https://latex.codecogs.com/png.latex?C
 "C") and
