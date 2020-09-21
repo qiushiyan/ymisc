@@ -1,16 +1,24 @@
 Package: ymisc
-Title: What the Package Does (One Line, Title Case)
+Title: Qiushi Yan's miscellaneous R functions  
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Qiushi",
+           family = "Yan",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "qiushi.yann@gmail.com")
+Description: utility functions that facilitate simple yet common tasks
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    dplyr,
+    purrr,
+    utils,
+    readr,
+    crayon,
+    stats,
+    magrittr
+Depends: 
+    R (>= 2.10)
