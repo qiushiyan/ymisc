@@ -1,7 +1,8 @@
 ---
 output: 
   github_document:
-    pandoc_args: --webtex
+    pandoc_args: --webtex=https://ibm.codecogs.com/png.latex?
+always_allow_html: yes
 ---
 
 ```{r, include = FALSE}
@@ -11,7 +12,8 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%",
   warnings = FALSE,
-  collapse = TRUE
+  collapse = TRUE,
+  fig.align = "center"
 )
 ```
 
@@ -139,5 +141,18 @@ list.files(path, "\\.csv$")
 `set_file_enc` uses `iconv` to convert files between encodings. The input can either be a directory or a single file. It works well with import functions from the readr package. 
 
 
+
+## A light ggplot2 theme
+
+I plan to include more custom ggplot2 themes in this package. Currently there is only one light theme, `theme_clean()`  
+
+```{r}
+library(ggplot2)
+mtcars %>%
+  ggplot(aes(wt, mpg, fill = factor(am))) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_clean()
+```
 
 
