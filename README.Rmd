@@ -31,40 +31,40 @@ remotes::install_github("enixam/ymisc")
 
 ## General hypothesis testing in multiple linear regression 
 
-A general hypothesis in multiple linear regression can be expressed in the following matrix form 
+<!-- A general hypothesis in multiple linear regression can be expressed in the following matrix form  -->
 
-$$
-C\boldsymbol{\beta} = \boldsymbol{d}
-$$
+<!-- $$ -->
+<!-- C\boldsymbol{\beta} = \boldsymbol{d} -->
+<!-- $$ -->
 
-where $C$ is an $m \times n$ matrix, $\boldsymbol{\beta}$ is an $p$-dimensional (including the intercept) parameter to estimate, and $\boldsymbol{d}$ is an $m$-dimensional vector. $C$ and $\boldsymbol{d}$ are specified by the hypothesis to be tested. For example, if we want to test the following hypothesis with two constraints for a linear model with 3 predictors 
+<!-- where $C$ is an $m \times n$ matrix, $\boldsymbol{\beta}$ is an $p$-dimensional (including the intercept) parameter to estimate, and $\boldsymbol{d}$ is an $m$-dimensional vector. $C$ and $\boldsymbol{d}$ are specified by the hypothesis to be tested. For example, if we want to test the following hypothesis with two constraints for a linear model with 3 predictors  -->
 
-$$
-\begin{aligned}
-H_0&: \beta_1 + \beta_3 = 0 \quad \text{and} \quad \beta_2 = 3   \\
-H_1&: \text{otherwise} 
-\end{aligned}
-$$
-Then this hypothesis can be expressed as 
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- H_0&: \beta_1 + \beta_3 = 0 \quad \text{and} \quad \beta_2 = 3   \\ -->
+<!-- H_1&: \text{otherwise}  -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+<!-- Then this hypothesis can be expressed as  -->
 
-$$
-\begin{bmatrix}
-0 & 1 & 0 & 1 \\
-0 & 0 & 1 & 0 \\
-\end{bmatrix}
-\begin{bmatrix}
-\beta_0 \\
-\beta_1 \\
-\beta_2 \\
-\beta_3 \\
-\end{bmatrix}
-= 
-\begin{bmatrix}
-0 \\
-3 \\
-\end{bmatrix}
-$$
-`clm` returns the F-statistic and p value associated with such test. It also returns the estimated $\sigma^2$ and $\boldsymbol{\beta}$ under $H_0$, i.e. the equality constrained model. 
+<!-- $$ -->
+<!-- \begin{bmatrix} -->
+<!-- 0 & 1 & 0 & 1 \\ -->
+<!-- 0 & 0 & 1 & 0 \\ -->
+<!-- \end{bmatrix} -->
+<!-- \begin{bmatrix} -->
+<!-- \beta_0 \\ -->
+<!-- \beta_1 \\ -->
+<!-- \beta_2 \\ -->
+<!-- \beta_3 \\ -->
+<!-- \end{bmatrix} -->
+<!-- =  -->
+<!-- \begin{bmatrix} -->
+<!-- 0 \\ -->
+<!-- 3 \\ -->
+<!-- \end{bmatrix} -->
+<!-- $$ -->
+<!-- `clm` returns the F-statistic and p value associated with such test. It also returns the estimated $\sigma^2$ and $\boldsymbol{\beta}$ under $H_0$, i.e. the equality constrained model.  -->
 
 ```{r}
 library(ymisc)
