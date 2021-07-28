@@ -30,9 +30,9 @@ clm(formula, coef_mat, d, data = NULL, t_test = FALSE, ...)
 \item \code{F_stat} when \code{t_test = FALSE}, F-statistic testing H0: C * beta = d
 \item \code{t_stat}: when \code{t_test = TRUE}, t-statistic testing: C * beta = d
 \item \code{p_value}: p value of the test
-\item \code{y}: the response used
-\item \code{x}: the model matrix used
-\item \code{model}: the model frame used
+\item \code{y}: the response
+\item \code{x}: the model matrix
+\item \code{model}: the model frame
 }
 }
 \description{

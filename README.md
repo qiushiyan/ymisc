@@ -1,3 +1,4 @@
+
 # ymisc
 
 This package contains miscellaneous functions I collected to make simple
@@ -14,51 +15,80 @@ remotes::install_github("enixam/ymisc")
 A general hypothesis in multiple linear regression can be expressed in
 the following matrix form
 
-  
-![&#10;C\\boldsymbol{\\beta} =
-\\boldsymbol{d}&#10;](https://latex.codecogs.com/png.latex?%0AC%5Cboldsymbol%7B%5Cbeta%7D%20%3D%20%5Cboldsymbol%7Bd%7D%0A
-"
+![
 C\\boldsymbol{\\beta} = \\boldsymbol{d}
-")  
+](https://ibm.codecogs.com/png.latex?%0AC%5Cboldsymbol%7B%5Cbeta%7D%20%3D%20%5Cboldsymbol%7Bd%7D%0A "
+C\boldsymbol{\beta} = \boldsymbol{d}
+")
 
-where ![C](https://latex.codecogs.com/png.latex?C "C") is an ![m \\times
-n](https://latex.codecogs.com/png.latex?m%20%5Ctimes%20n "m \\times n")
+where ![C](https://ibm.codecogs.com/png.latex?C "C") is an
+![m \\times n](https://ibm.codecogs.com/png.latex?m%20%5Ctimes%20n "m \times n")
 matrix,
-![\\boldsymbol{\\beta}](https://latex.codecogs.com/png.latex?%5Cboldsymbol%7B%5Cbeta%7D
-"\\boldsymbol{\\beta}") is an
-![p](https://latex.codecogs.com/png.latex?p "p")-dimensional (including
-the intercept) parameter to estimate, and
-![\\boldsymbol{d}](https://latex.codecogs.com/png.latex?%5Cboldsymbol%7Bd%7D
-"\\boldsymbol{d}") is an ![m](https://latex.codecogs.com/png.latex?m
-"m")-dimensional vector. ![C](https://latex.codecogs.com/png.latex?C
-"C") and
-![\\boldsymbol{d}](https://latex.codecogs.com/png.latex?%5Cboldsymbol%7Bd%7D
-"\\boldsymbol{d}") are specified by the hypothesis to be tested. For
-example, if we want to test the following hypothesis with two
-constraints for a linear model with 3 predictors
+![\\boldsymbol{\\beta}](https://ibm.codecogs.com/png.latex?%5Cboldsymbol%7B%5Cbeta%7D "\boldsymbol{\beta}")
+is an ![p](https://ibm.codecogs.com/png.latex?p "p")-dimensional
+(including the intercept) parameter to estimate, and
+![\\boldsymbol{d}](https://ibm.codecogs.com/png.latex?%5Cboldsymbol%7Bd%7D "\boldsymbol{d}")
+is an ![m](https://ibm.codecogs.com/png.latex?m "m")-dimensional vector.
+![C](https://ibm.codecogs.com/png.latex?C "C") and
+![\\boldsymbol{d}](https://ibm.codecogs.com/png.latex?%5Cboldsymbol%7Bd%7D "\boldsymbol{d}")
+are specified by the hypothesis to be tested. For example, if we want to
+test the following hypothesis with two constraints for a linear model
+with 3 predictors
 
-  
-![&#10;\\begin{aligned}&#10;H\_0&: \\beta\_1 + \\beta\_3 = 0 \\quad
-\\text{and} \\quad \\beta\_2 = 3 \\\\&#10;H\_1&: \\text{otherwise}
-&#10;\\end{aligned}&#10;](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AH_0%26%3A%20%5Cbeta_1%20%2B%20%5Cbeta_3%20%3D%200%20%5Cquad%20%5Ctext%7Band%7D%20%5Cquad%20%5Cbeta_2%20%3D%203%20%20%20%5C%5C%0AH_1%26%3A%20%5Ctext%7Botherwise%7D%20%0A%5Cend%7Baligned%7D%0A
-"
+![
 \\begin{aligned}
-H_0&: \\beta_1 + \\beta_3 = 0 \\quad \\text{and} \\quad \\beta_2 = 3   \\\\
-H_1&: \\text{otherwise} 
+H\_0&: \\beta\_1 + \\beta\_3 = 0 \\quad \\text{and} \\quad \\beta\_2 = 3   \\\\
+H\_1&: \\text{otherwise} 
 \\end{aligned}
-")  
+](https://ibm.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AH_0%26%3A%20%5Cbeta_1%20%2B%20%5Cbeta_3%20%3D%200%20%5Cquad%20%5Ctext%7Band%7D%20%5Cquad%20%5Cbeta_2%20%3D%203%20%20%20%5C%5C%0AH_1%26%3A%20%5Ctext%7Botherwise%7D%20%0A%5Cend%7Baligned%7D%0A "
+\begin{aligned}
+H_0&: \beta_1 + \beta_3 = 0 \quad \text{and} \quad \beta_2 = 3   \\
+H_1&: \text{otherwise} 
+\end{aligned}
+")
+
 Then this hypothesis can be expressed as
 
-![](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0A0%20%26%201%20%26%200%20%26%201%20%5C%5C%0A0%20%26%200%20%26%201%20%26%200%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Cbeta_0%20%5C%5C%0A%5Cbeta_1%20%5C%5C%0A%5Cbeta_2%20%5C%5C%0A%5Cbeta_3%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%3D%20%0A%5Cbegin%7Bbmatrix%7D%0A0%20%5C%5C%0A3%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A)
-
+![
+\\begin{bmatrix}
+0 & 1 & 0 & 1 \\\\
+0 & 0 & 1 & 0 \\\\
+\\end{bmatrix}
+\\begin{bmatrix}
+\\beta\_0 \\\\
+\\beta\_1 \\\\
+\\beta\_2 \\\\
+\\beta\_3 \\\\
+\\end{bmatrix}
+= 
+\\begin{bmatrix}
+0 \\\\
+3 \\\\
+\\end{bmatrix}
+](https://ibm.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0A0%20%26%201%20%26%200%20%26%201%20%5C%5C%0A0%20%26%200%20%26%201%20%26%200%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Cbeta_0%20%5C%5C%0A%5Cbeta_1%20%5C%5C%0A%5Cbeta_2%20%5C%5C%0A%5Cbeta_3%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A%3D%20%0A%5Cbegin%7Bbmatrix%7D%0A0%20%5C%5C%0A3%20%5C%5C%0A%5Cend%7Bbmatrix%7D%0A "
+\begin{bmatrix}
+0 & 1 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+\end{bmatrix}
+\begin{bmatrix}
+\beta_0 \\
+\beta_1 \\
+\beta_2 \\
+\beta_3 \\
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 \\
+3 \\
+\end{bmatrix}
+")
 
 `clm` returns the F-statistic and p value associated with such test. It
 also returns the estimated
-![\\sigma^2](https://latex.codecogs.com/png.latex?%5Csigma%5E2
-"\\sigma^2") and
-![\\boldsymbol{\\beta}](https://latex.codecogs.com/png.latex?%5Cboldsymbol%7B%5Cbeta%7D
-"\\boldsymbol{\\beta}") under
-![H\_0](https://latex.codecogs.com/png.latex?H_0 "H_0"), i.e. the
+![\\sigma^2](https://ibm.codecogs.com/png.latex?%5Csigma%5E2 "\sigma^2")
+and
+![\\boldsymbol{\\beta}](https://ibm.codecogs.com/png.latex?%5Cboldsymbol%7B%5Cbeta%7D "\boldsymbol{\beta}")
+under ![H\_0](https://ibm.codecogs.com/png.latex?H_0 "H_0"), i.e. the
 equality constrained model.
 
 ``` r
@@ -91,7 +121,7 @@ clm_res$coefficients
 In cases of testing significance of individual parameters, t test can be
 used by setting `t_test = TRUE`. Suppose we want to obtain the t
 statistic for
-![\\beta\_1](https://latex.codecogs.com/png.latex?%5Cbeta_1 "\\beta_1")
+![\\beta\_1](https://ibm.codecogs.com/png.latex?%5Cbeta_1 "\beta_1")
 
 ``` r
 C <- matrix(c(0, 1, 0, 0), nrow = 1)
@@ -170,7 +200,6 @@ list.files(path, "\\.csv$")
 `set_file_enc` uses `iconv` to convert files between encodings. The
 input can either be a directory or a single file. It works well with
 import functions from the readr package.
-
 
 ## A light ggplot2 theme
 

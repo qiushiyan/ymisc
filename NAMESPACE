@@ -2,6 +2,8 @@
 
 export("%>%")
 export(clm)
+export(code_block)
+export(code_blocks)
 export(group_write)
 export(set_file_enc)
 export(theme_clean)

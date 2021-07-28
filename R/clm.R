@@ -19,9 +19,9 @@
 #' - `F_stat` when `t_test = FALSE`, F-statistic testing H0: C * beta = d
 #' - `t_stat`: when `t_test = TRUE`, t-statistic testing: C * beta = d
 #' - `p_value`: p value of the test
-#' - `y`: the response used
-#' - `x`: the model matrix used
-#' - `model`: the model frame used
+#' - `y`: the response
+#' - `x`: the model matrix
+#' - `model`: the model frame
 #' @export
 #'
 #' @examples
