@@ -169,3 +169,14 @@ mtcars %>%
 ```
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+
+# Convert scripts into markdown code blocks
+
+intended to use with chunk option `results='asis'`
+
+``` r
+# convert multiple scripts
+code_blocks(c(dir1, dir2, dir3))
+# convert single script
+code_block(file)
+```
