@@ -4,10 +4,14 @@
 \alias{code_blocks}
 \title{Convert scripts into R Markdown code blocks}
 \usage{
-code_blocks(dirs, exclude = NULL)
+code_blocks(dirs, exclude = NULL, print_tree = TRUE)
 }
 \arguments{
-\item{dirs}{the directory containing scripts}
+\item{dirs}{directories containing scripts}
+
+\item{exclude}{files or directories to exclude}
+
+\item{print_tree}{whether file structure should be printed}
 }
 \value{
 
