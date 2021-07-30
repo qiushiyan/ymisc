@@ -16,16 +16,14 @@ code_blocks <- function(dirs, exclude = NULL, print_tree = TRUE) {
   # print file structure
   cat("```\n")
   for (dir in dirs) {
-    if (dir %in% exclude) {
-      next
+    if (!(dir %in% exclude)) {
+      is_dir <- !utils::file_test("-f", dir)
+      if (print_tree && is_dir) {
+        cat(fs::dir_tree(dir), sep = "\n")
+      } else {
+        cat(dir, sep = "\n")
+      }
     }
-    is_dir <- !utils::file_test("-f", dir)
-    if (print_tree && is_dir) {
-      cat(fs::dir_tree(dir), sep = "\n")
-    } else {
-      cat(dir, sep = "\n")
-    }
-
   }
   cat("```\n")
 
@@ -35,13 +33,12 @@ code_blocks <- function(dirs, exclude = NULL, print_tree = TRUE) {
     if (is_dir) {
       files <- fs::dir_ls(dir)
       for (file in files) {
-        if (file %in% exclude) {
-          next
-        }
-        if (!utils::file_test("-f", file)) {
-          code_blocks(file, print_tree = FALSE)
-        } else {
-          code_block(file)
+        if (!(file %in% exclude)) {
+          if (!utils::file_test("-f", file)) {
+            code_blocks(file, print_tree = FALSE)
+          } else {
+            code_block(file)
+          }
         }
       }
     } else {
