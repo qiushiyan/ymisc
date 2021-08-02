@@ -17,7 +17,7 @@ code_blocks(dirs, exclude = NULL, print_tree = TRUE)
 
 }
 \description{
-intended to use with chunk option results='asis'
+intended to be used with chunk option results='asis'
 }
 \examples{
 # convert multiple scripts inside directories

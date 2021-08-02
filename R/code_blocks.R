@@ -1,6 +1,6 @@
 #' Convert scripts into R Markdown code blocks
 #'
-#' intended to use with chunk option results='asis'
+#' intended to be used with chunk option results='asis'
 #' @param dirs directories containing scripts
 #' @param exclude files or directories to exclude
 #' @param print_tree whether file structure should be printed
@@ -52,6 +52,10 @@ code_blocks <- function(dirs, exclude = NULL, print_tree = TRUE) {
 #' @rdname code_blacks
 #' @usage NULL
 code_block <- function(file) {
+  if (set_knitr_results) {
+    knitr::opts_chunk$set(results="asis")
+    on.exit(knitr::opts_chunk$set(results="markup"))
+  }
   ext <- tools::file_ext(file)
   type <- switch(ext,
          "r" = list(language = ".r", comment = "#"),
