@@ -21,7 +21,7 @@ intended to be used with chunk option results='asis'
 }
 \examples{
 # convert multiple scripts inside directories
-# code_blocks(c(dir1, dir2, ...))
+\dontrun{code_blocks(c(dir1, dir2, ...))}
 # convert single script
 # code_block(file)
 }

@@ -9,25 +9,22 @@
 #'
 #' @examples
 #' # convert multiple scripts inside directories
-#' # code_blocks(c(dir1, dir2, ...))
+#' \dontrun{code_blocks(c(dir1, dir2, ...))}
 #' # convert single script
-#' # code_block(file)
+#' \dontrun{code_block(file)}
 code_blocks <- function(dirs, exclude = NULL, print_tree = TRUE) {
-  # print file structure
-  cat("```\n")
+  # print file structure for directories
   for (dir in dirs) {
     if (!(dir %in% exclude)) {
       is_dir <- !utils::file_test("-f", dir)
       if (print_tree && is_dir) {
-        cat(fs::dir_tree(dir), sep = "\n")
-      } else {
-        cat(dir, sep = "\n")
+       fs::dir_tree(dir)
       }
     }
   }
-  cat("```\n")
 
   # print file contents
+  out <- ""
   for (dir in dirs) {
     is_dir <- !utils::file_test("-f", dir)
     if (is_dir) {
@@ -35,27 +32,23 @@ code_blocks <- function(dirs, exclude = NULL, print_tree = TRUE) {
       for (file in files) {
         if (!(file %in% exclude)) {
           if (!utils::file_test("-f", file)) {
-            code_blocks(file, print_tree = FALSE)
+            out <- paste0(out, code_blocks(file, print_tree = FALSE), "\n")
           } else {
-            code_block(file)
+            out <- paste0(out, code_block(file), "\n")
           }
         }
       }
     } else {
-      code_block(file = dir)
+      out <- paste0(out, code_block(file = dir), "\n")
     }
-    cat("\n")
   }
+  structure(out, class = "script")
 }
 
 #' @export
 #' @rdname code_blacks
 #' @usage NULL
 code_block <- function(file) {
-  if (set_knitr_results) {
-    knitr::opts_chunk$set(results="asis")
-    on.exit(knitr::opts_chunk$set(results="markup"))
-  }
   ext <- tools::file_ext(file)
   type <- switch(ext,
          "r" = list(language = ".r", comment = "#"),
@@ -69,11 +62,13 @@ code_block <- function(file) {
          list(language = "", comment = "#")
   )
   contents <- readLines(file)
-  cat(glue::glue("```{<type$language>}", .open = "<", .close = ">"), sep = "\n")
-  cat(glue::glue("{type$comment} {file}"), sep = "\n")
-  for (line in contents) {
-    cat(line, sep = "\n")
-  }
-  cat("```\n")
-}
 
+  out <- ""
+  out <- paste0(out, glue::glue("```{<type$language>}", .open = "<", .close = ">"), "\n")
+  out <- paste0(out, glue::glue("{type$comment} {file}"), "\n")
+  for (line in contents) {
+    out <- paste0(out, line, "\n")
+  }
+  out <- paste0(out, "```\n")
+  structure(out, class = "script")
+}
