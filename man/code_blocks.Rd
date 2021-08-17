@@ -23,5 +23,5 @@ intended to be used with chunk option results='asis'
 # convert multiple scripts inside directories
 \dontrun{code_blocks(c(dir1, dir2, ...))}
 # convert single script
-# code_block(file)
+\dontrun{code_block(file)}
 }

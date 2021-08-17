@@ -23,7 +23,10 @@ Imports:
     ggplot2,
     fs,
     glue,
-    knitr
+    knitr,
+    withr,
+    usethis,
+    xfun
 Depends: 
     R (>= 2.10)
 Suggests: 
