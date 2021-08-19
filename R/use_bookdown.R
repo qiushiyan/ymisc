@@ -28,6 +28,7 @@ use_bookdown <- function(proj_name,
   file.create("_output.yml")
   file.create("_common.R")
   file.create("index.Rmd")
+  file.create(".gitignore")
 
   # file contents
   css <- list(path = "./style.css",
@@ -44,13 +45,15 @@ use_bookdown <- function(proj_name,
   index <- list(path = "./index.Rmd",
                 contents = glue::glue("---\ntitle: \"<proj_name>\"\nauthor: \"Qiushi\"\ndate: \"`r Sys.Date()`\"\nsite: bookdown::bookdown_site\n---\n\n```{r, include = FALSE}\nlibrary(bslib)\nlibrary(downlit)\nlibrary(xml2)\n```\n\n# Preface",
                                       .open = "<", .close = ">"))
-
+  gitignore <- list(path = "./.gitignore",
+                    contens = ".Rproj.user\n*.md\n*.rds\n*.html\nrenv/*\n!renv/activate.R\n_book")
 
   xfun::write_utf8(css$contents, css$path)
   xfun::write_utf8(bookdown$contents, bookdown$path)
   xfun::write_utf8(output$contents, output$path)
   xfun::write_utf8(common$contents, common$path)
   xfun::write_utf8(index$contents, index$path)
+  xfun::write_utf8(gitignore$contents, gitignore$path)
 
 
   if (rstudio) {
