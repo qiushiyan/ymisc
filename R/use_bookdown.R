@@ -1,22 +1,35 @@
-#' Create a bs4_book bookdown project
+#' Generate project structures
 #'
+#' @description
+#' `use_bookdown()` generates a `bs4_book` format bookdown project. `use_bookdown_action` creates a github action for deploying bookdown projects.
+#'  Need to run `renv::init()` in the new project to use the action.
 #' @param proj_name project name
 #' @param dir parent directory of the project
 #' @param rstudio if rstudio is available
 #' @param open if rstudio is open
+#' @param gh_action whether to use a github action to deploy the book
 #'
-#' @return
+#'
+#' @return the new project path
 #' @export
 #'
 #' @examples
-#' \dontrun{use_project("example_project")}
+#' \dontrun{use_bookdown("my-awesome-book", "~/documents")}
+
 use_bookdown <- function(proj_name,
                         dir = ".",
                         rstudio = rstudioapi::isAvailable(),
-                        open = rlang::is_interactive()) {
-  path <- fs::path_join(c(dir, proj_name))
-  name <- fs::path_file(fs::path_abs(path))
-
+                        open = rlang::is_interactive(),
+                        gh_action = TRUE) {
+  path <- fs::path_join(c(fs::path_abs(dir), proj_name))
+  if (fs::dir_exists(path)) {
+    delete_dir <- usethis::ui_yeah("Directory already exists, delete it?", yes = "yes", no = "no")
+    if (delete_dir) {
+      unlink("d:/test-bookdown", recursive = TRUE)
+    } else {
+      return(NULL)
+    }
+  }
   create_directory(path)
   usethis::local_project(path, force = TRUE)
 
@@ -45,16 +58,14 @@ use_bookdown <- function(proj_name,
   index <- list(path = "./index.Rmd",
                 contents = glue::glue("---\ntitle: \"<proj_name>\"\nauthor: \"Qiushi\"\ndate: \"`r Sys.Date()`\"\nsite: bookdown::bookdown_site\n---\n\n```{r, include = FALSE}\nlibrary(bslib)\nlibrary(downlit)\nlibrary(xml2)\n```\n\n# Preface",
                                       .open = "<", .close = ">"))
-  gitignore <- list(path = "./.gitignore",
-                    contens = ".Rproj.user\n*.md\n*.rds\n*.html\nrenv/*\n!renv/activate.R\n_book")
+  gitignore <- list(path = fs::path_join(c(path, ".gitignore")),
+                    contents = ".Rproj.user\n*.md\n*.rds\n*.html\nrenv/*\n!renv/activate.R\n_book")
 
   xfun::write_utf8(css$contents, css$path)
   xfun::write_utf8(bookdown$contents, bookdown$path)
   xfun::write_utf8(output$contents, output$path)
   xfun::write_utf8(common$contents, common$path)
   xfun::write_utf8(index$contents, index$path)
-  xfun::write_utf8(gitignore$contents, gitignore$path)
-
 
   if (rstudio) {
     usethis::use_rstudio()
@@ -63,6 +74,17 @@ use_bookdown <- function(proj_name,
     usethis::ui_todo("Build robust paths within your project via {ui_code('here::here()')}")
     usethis::ui_todo("Learn more at <https://here.r-lib.org>")
     fs::file_create(proj_path(".here"))
+  }
+
+  xfun::write_utf8(gitignore$contents, gitignore$path)
+
+  if (gh_action) {
+    use_bookdown_action(path)
+  } else {
+    use_gh_action <- ui_yeah("Use github action to deploy the book?", yes = "yes", no = "no")
+    if (use_gh_action) {
+      use_bookdown_action(path)
+    }
   }
 
   if (open) {
@@ -74,6 +96,27 @@ use_bookdown <- function(proj_name,
   }
 
   invisible(usethis::proj_get())
+}
+
+#' @rdname use_bookdown
+#' @export
+#' @param path project path
+#' @param action action name to be added in
+use_bookdown_action <- function(path, action = "deploy") {
+  gh_path <- fs::path_join(c(fs::path_abs(path), ".github", "workflows"))
+  if (!fs::dir_exists(gh_path)) {
+    usethis::ui_done(("Creating {usethis::ui_path(gh_path)}"))
+    fs::dir_create(gh_path)
+  }
+
+  if (!(fs::path_ext(action) %in% c("yml", "yaml"))) {
+    fs::path_ext(action) = "yml"
+  }
+
+  action_path <- fs::path_join(c(gh_path, action))
+  file.create(action_path)
+  xfun::write_utf8(bookdown_deploy, action_path)
+  usethis::ui_done(("writing {usethis::ui_path(action_path)}"))
 }
 
 # from usethis:::create_directory

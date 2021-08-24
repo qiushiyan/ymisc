@@ -1,5 +1,6 @@
 #' Convert scripts into R Markdown code blocks
 #'
+#' @description
 #' intended to be used with chunk option results='asis'
 #' @param dirs directories containing scripts
 #' @param exclude files or directories to exclude
@@ -46,7 +47,7 @@ code_blocks <- function(dirs, exclude = NULL, print_tree = TRUE) {
 }
 
 #' @export
-#' @rdname code_blacks
+#' @rdname code_blocks
 #' @usage NULL
 code_block <- function(file) {
   ext <- tools::file_ext(file)

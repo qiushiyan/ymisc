@@ -2,14 +2,18 @@
 % Please edit documentation in R/use_bookdown.R
 \name{use_bookdown}
 \alias{use_bookdown}
-\title{Create a bs4_book bookdown project}
+\alias{use_bookdown_action}
+\title{Generate project structures}
 \usage{
 use_bookdown(
   proj_name,
   dir = ".",
   rstudio = rstudioapi::isAvailable(),
-  open = rlang::is_interactive()
+  open = rlang::is_interactive(),
+  gh_action = TRUE
 )
+
+use_bookdown_action(path, action = "deploy")
 }
 \arguments{
 \item{proj_name}{project name}
@@ -19,13 +23,20 @@ use_bookdown(
 \item{rstudio}{if rstudio is available}
 
 \item{open}{if rstudio is open}
+
+\item{gh_action}{whether to use a github action to deploy the book}
+
+\item{path}{project path}
+
+\item{action}{action name to be added in}
 }
 \value{
-
+the new project path
 }
 \description{
-Create a bs4_book bookdown project
+\code{use_bookdown()} generates a \code{bs4_book} format bookdown project. \code{use_bookdown_action} creates a github action for deploying bookdown projects.
+Need to run \code{renv::init()} in the new project to use the action.
 }
 \examples{
-\dontrun{use_project("example_project")}
+\dontrun{use_bookdown("my-awesome-book", "~/documents")}
 }

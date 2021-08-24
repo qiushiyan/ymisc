@@ -2,6 +2,7 @@
 % Please edit documentation in R/code_blocks.R
 \name{code_blocks}
 \alias{code_blocks}
+\alias{code_block}
 \title{Convert scripts into R Markdown code blocks}
 \usage{
 code_blocks(dirs, exclude = NULL, print_tree = TRUE)
