@@ -1,0 +1,14 @@
+library(withr)
+library(fs)
+
+
+test_that("use_bookdown generates the specified file structure", {
+  with_tempdir(
+    {
+      use_bookdown("test-proj")
+      files <- list.files(path_join(c(".", "test-proj")))
+      expect_true(is_subset(c("_output.yml", "_bookdown.yml", "_common.R", "index.Rmd", "style.css"),
+                            files))
+    }
+  )
+})
