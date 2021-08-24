@@ -1,5 +1,6 @@
 library(withr)
 library(fs)
+library(usethis)
 
 
 test_that("use_bookdown generates the specified file structure", {

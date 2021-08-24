@@ -81,7 +81,7 @@ use_bookdown <- function(proj_name,
   if (gh_action) {
     use_bookdown_action(path)
   } else {
-    use_gh_action <- ui_yeah("Use github action to deploy the book?", yes = "yes", no = "no")
+    use_gh_action <- usethis::ui_yeah("Use github action to deploy the book?", yes = "yes", no = "no")
     if (use_gh_action) {
       use_bookdown_action(path)
     }
