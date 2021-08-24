@@ -14,6 +14,16 @@ You can install the package from Github via
 remotes::install_github("enixam/ymisc")
 ```
 
+## Scaffold a `bs4_book` format bookdown project with automatic deployment
+
+``` r
+use_bookdown("my-awesome-book", tempdir(), gh_action = TRUE)
+```
+
+Note that the github action for deploying the book to github pages is
+designed to use `renv` for installing dependencies. So you’ll need to
+run `renv::init()` in the new project directory before it can work.
+
 ## General hypothesis testing in multiple linear regression
 
 <!-- A general hypothesis in multiple linear regression can be expressed in the following matrix form  -->
