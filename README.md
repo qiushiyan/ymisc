@@ -2,12 +2,11 @@
 # ymisc
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/enixam/ymisc/workflows/R-CMD-check/badge.svg)](https://github.com/enixam/ymisc/actions)
 <!-- badges: end -->
-[Copied to clipboard]
 
-This package contains miscellaneous functions I collected to make simple
-yet common tasks easier.
+This package contains my personal miscellaneous functions.
 
 You can install the package from Github via
 

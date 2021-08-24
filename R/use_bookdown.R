@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' \dontrun{use_bookdown("my-awesome-book", "~/documents")}
-
+#' \dontrun{use_bookdown_action(".")}
 use_bookdown <- function(proj_name,
                         dir = ".",
                         rstudio = rstudioapi::isAvailable(),

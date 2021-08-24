@@ -5,7 +5,7 @@
 #' @param dirs directories containing scripts
 #' @param exclude files or directories to exclude
 #' @param print_tree whether file structure should be printed
-#' @return
+#' @return file contents
 #' @export
 #'
 #' @examples
