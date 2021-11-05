@@ -39,4 +39,5 @@ Need to run \code{renv::init()} in the new project to use the action.
 }
 \examples{
 \dontrun{use_bookdown("my-awesome-book", "~/documents")}
+\dontrun{use_bookdown_action(".")}
 }

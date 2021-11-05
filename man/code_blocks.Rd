@@ -15,7 +15,7 @@ code_blocks(dirs, exclude = NULL, print_tree = TRUE)
 \item{print_tree}{whether file structure should be printed}
 }
 \value{
-
+file contents
 }
 \description{
 intended to be used with chunk option results='asis'
