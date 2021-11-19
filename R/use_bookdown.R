@@ -2,7 +2,7 @@
 #'
 #' @description
 #' `use_bookdown()` generates a `bs4_book` format bookdown project. `use_bookdown_action` creates a github action for deploying bookdown projects.
-#'  Need to run `renv::init()` in the new project to use the action.
+#'  Need to run `renv::init()` in the new project to use the action. `create_bookdown` is an alias.
 #' @param proj_name project name
 #' @param dir parent directory of the project
 #' @param rstudio if rstudio is available
@@ -132,3 +132,7 @@ create_directory <- function (path)
   usethis::ui_done("Creating {usethis::ui_path(path)}")
   invisible(TRUE)
 }
+
+#' @rdname use_bookdown
+#' @export
+create_bookdown <- use_bookdown

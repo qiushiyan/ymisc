@@ -3,6 +3,7 @@
 \name{use_bookdown}
 \alias{use_bookdown}
 \alias{use_bookdown_action}
+\alias{create_bookdown}
 \title{Generate project structures}
 \usage{
 use_bookdown(
@@ -14,6 +15,14 @@ use_bookdown(
 )
 
 use_bookdown_action(path, action = "deploy")
+
+create_bookdown(
+  proj_name,
+  dir = ".",
+  rstudio = rstudioapi::isAvailable(),
+  open = rlang::is_interactive(),
+  gh_action = TRUE
+)
 }
 \arguments{
 \item{proj_name}{project name}
@@ -35,7 +44,7 @@ the new project path
 }
 \description{
 \code{use_bookdown()} generates a \code{bs4_book} format bookdown project. \code{use_bookdown_action} creates a github action for deploying bookdown projects.
-Need to run \code{renv::init()} in the new project to use the action.
+Need to run \code{renv::init()} in the new project to use the action. \code{create_bookdown} is an alias.
 }
 \examples{
 \dontrun{use_bookdown("my-awesome-book", "~/documents")}
