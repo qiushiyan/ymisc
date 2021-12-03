@@ -2,7 +2,6 @@
 % Please edit documentation in R/use_bookdown.R
 \name{use_bookdown}
 \alias{use_bookdown}
-\alias{use_bookdown_action}
 \alias{create_bookdown}
 \title{Generate project structures}
 \usage{
@@ -13,8 +12,6 @@ use_bookdown(
   open = rlang::is_interactive(),
   gh_action = TRUE
 )
-
-use_bookdown_action(path, action = "deploy")
 
 create_bookdown(
   proj_name,
@@ -34,16 +31,12 @@ create_bookdown(
 \item{open}{if rstudio is open}
 
 \item{gh_action}{whether to use a github action to deploy the book}
-
-\item{path}{project path}
-
-\item{action}{action name to be added in}
 }
 \value{
 the new project path
 }
 \description{
-\code{use_bookdown()} generates a \code{bs4_book} format bookdown project. \code{use_bookdown_action} creates a github action for deploying bookdown projects.
+\code{use_bookdown()} generates a \code{bs4_book} format bookdown project.
 Need to run \code{renv::init()} in the new project to use the action. \code{create_bookdown} is an alias.
 }
 \examples{

@@ -31,16 +31,16 @@ You can install the package from Github via
 remotes::install_github("enixam/ymisc")
 ```
 
-## Scaffold a `bs4_book` format bookdown project with automatic deployment 
+## Scaffold a `bs4_book` format bookdown project with automatic deployment
 
 ```r
 use_bookdown("my-awesome-book", tempdir(), gh_action = TRUE)
 ```
 
-Note that the github action for deploying the book to github pages is designed to use `renv` for installing dependencies. So you'll need to run `renv::init()` in the new project directory before it can work. 
+Note that the github action for deploying the book to github pages is designed to use `renv` for installing dependencies. So you'll need to run `renv::init()` in the new project directory before it can work.
 
 
-## General hypothesis testing in multiple linear regression 
+## General hypothesis testing in multiple linear regression
 
 <!-- A general hypothesis in multiple linear regression can be expressed in the following matrix form  -->
 
@@ -89,7 +89,7 @@ d <- c(0, 3)
 
 clm_res <- clm(Pb ~ Cd + Co + Cr, data = df, coef_mat = C, d = d)
 
-# F statistic and p-value of 
+# F statistic and p-value of
 clm_res$F_stat
 clm_res$p_value
 
@@ -98,7 +98,7 @@ clm_res$coefficients
 ```
 
 
-In cases of testing significance of individual parameters, t test can be used by setting `t_test = TRUE`. Suppose we want to obtain the t statistic for $\beta_1$ 
+In cases of testing significance of individual parameters, t test can be used by setting `t_test = TRUE`. Suppose we want to obtain the t statistic for $\beta_1$
 
 ```{r}
 C <- matrix(c(0, 1, 0, 0), nrow = 1)
@@ -109,7 +109,7 @@ clm_t$t_stat
 clm_t$p_value
 ```
 
-We can verify that the t statistic is the square root of the F statistic, and the p-value is the same. 
+We can verify that the t statistic is the square root of the F statistic, and the p-value is the same.
 
 
 ```{r}
@@ -125,11 +125,11 @@ anova(lm(Pb ~  Co + Cr, data = df),
       lm(Pb ~ Cd + Co + Cr, data = df))
 ```
 
-## Write a data frame groupwise 
+## Write a data frame groupwise
 
-There are times when we may wish to write different groups of a data frame to separate files. I used to turn to `puurrr::group_walk` for this, but it is not that easy to control names of such files. `group_write` is a wrapper of`group_walk` and utilizes grouping functions from dplyr to automate this task as well as providing informative files names.   
+There are times when we may wish to write different groups of a data frame to separate files. I used to turn to `puurrr::group_walk` for this, but it is not that easy to control names of such files. `group_write` is a wrapper of`group_walk` and utilizes grouping functions from dplyr to automate this task as well as providing informative files names.
 
-Suppose we would like to divide passengers in the Titanic according to their age and gender, this would result in 4 groups 
+Suppose we would like to divide passengers in the Titanic according to their age and gender, this would result in 4 groups
 
 ```{r}
 path <- tempdir()
@@ -138,7 +138,7 @@ titanic <- titanic[rep(1:nrow(titanic), titanic$Freq), -5]
 dplyr::count(titanic, Sex, Age)
 ```
 
-Now use `group_write` to output this 4 groups into different csv files: 
+Now use `group_write` to output this 4 groups into different csv files:
 
 ```{r}
 group_write(titanic, Sex, Age, dir = path)
@@ -147,22 +147,22 @@ list.files(path, "\\.csv$")
 
 
 
-## Set multiple file encodings at once 
+## Set multiple file encodings at once
 
-`set_file_enc` uses `iconv` to convert files between encodings. The input can either be a directory or a single file. It works well with import functions from the readr package. 
+`set_file_enc` uses `iconv` to convert files between encodings. The input can either be a directory or a single file. It works well with import functions from the readr package.
 
 
 
 ## A light ggplot2 theme
 
-I plan to include more custom ggplot2 themes in this package. Currently there is only one light theme, `theme_clean()`  
+I plan to include more custom ggplot2 themes in this package. Currently there is only one light theme, `theme_clean()`
 
 ```{r}
 library(ggplot2)
 mtcars %>%
-  ggplot(aes(wt, mpg, fill = factor(am))) + 
-  geom_point() + 
-  geom_smooth() + 
+  ggplot(aes(wt, mpg, fill = factor(am))) +
+  geom_point() +
+  geom_smooth() +
   theme_clean()
 ```
 

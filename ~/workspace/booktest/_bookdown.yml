@@ -1,0 +1,10 @@
+book_filename: "~/workspace/booktest"
+new_session: yes
+delete_merged_file: true
+
+
+before_chapter_script: "_common.R"
+
+rmd_files: [
+  "index.Rmd", 
+]

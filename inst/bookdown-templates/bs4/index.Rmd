@@ -1,0 +1,8 @@
+---
+title: "bookexample"
+author: "Qiushi"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+
+# Preface
