@@ -1,8 +1,0 @@
----
-title: "~/workspace/booktest"
-author: "Qiushi"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
----
-
-# Preface

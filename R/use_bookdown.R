@@ -20,6 +20,8 @@ use_bookdown <- function(path,
                          rstudio = rstudioapi::isAvailable(),
                          open = rlang::is_interactive(),
                          gh_action = TRUE) {
+
+  path <- suppressWarnings(normalizePath(path, mustWork = FALSE))
   proj_name <- path_file(path)
 
   if (fs::dir_exists(path)) {
