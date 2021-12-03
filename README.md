@@ -69,7 +69,7 @@ d <- c(0, 3)
 
 clm_res <- clm(Pb ~ Cd + Co + Cr, data = df, coef_mat = C, d = d)
 
-# F statistic and p-value of 
+# F statistic and p-value of
 clm_res$F_stat
 #> [1] 13.47309
 clm_res$p_value
@@ -87,7 +87,7 @@ clm_res$coefficients
 In cases of testing significance of individual parameters, t test can be
 used by setting `t_test = TRUE`. Suppose we want to obtain the t
 statistic for
-![\\beta\_1](https://ibm.codecogs.com/png.latex?%5Cbeta_1 "\beta_1")
+![\\beta_1](https://ibm.codecogs.com/png.latex?%5Cbeta_1 "\beta_1")
 
 ``` r
 C <- matrix(c(0, 1, 0, 0), nrow = 1)
@@ -175,9 +175,9 @@ there is only one light theme, `theme_clean()`
 ``` r
 library(ggplot2)
 mtcars %>%
-  ggplot(aes(wt, mpg, fill = factor(am))) + 
-  geom_point() + 
-  geom_smooth() + 
+  ggplot(aes(wt, mpg, fill = factor(am))) +
+  geom_point() +
+  geom_smooth() +
   theme_clean()
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
