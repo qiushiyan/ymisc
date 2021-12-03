@@ -8,6 +8,13 @@
 \description{
 my miscellaneous functions
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://qiushiyan.github.io/ymisc}
+}
+
+}
 \author{
 \strong{Maintainer}: Qiushi Yan \email{qiushi.yann@gmail.com}
 

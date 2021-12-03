@@ -7,10 +7,7 @@
 set_knitr_optons(...)
 }
 \arguments{
-\item{...}{}
-}
-\value{
-
+\item{...}{additional named arguments passed to knitr::opts_chunk$set()}
 }
 \description{
 set common knitr options

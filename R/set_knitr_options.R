@@ -1,8 +1,7 @@
 #' set common knitr options
 #'
-#' @param ...
+#' @param ... additional named arguments passed to knitr::opts_chunk$set()
 #'
-#' @return
 #' @export
 set_knitr_optons <- function(...) {
   knitr::opts_chunk$set(

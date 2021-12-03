@@ -6,25 +6,21 @@
 \title{Generate project structures}
 \usage{
 use_bookdown(
-  proj_name,
-  dir = ".",
+  path,
   rstudio = rstudioapi::isAvailable(),
   open = rlang::is_interactive(),
   gh_action = TRUE
 )
 
 create_bookdown(
-  proj_name,
-  dir = ".",
+  path,
   rstudio = rstudioapi::isAvailable(),
   open = rlang::is_interactive(),
   gh_action = TRUE
 )
 }
 \arguments{
-\item{proj_name}{project name}
-
-\item{dir}{parent directory of the project}
+\item{path}{project path}
 
 \item{rstudio}{if rstudio is available}
 
@@ -40,6 +36,5 @@ the new project path
 Need to run \code{renv::init()} in the new project to use the action. \code{create_bookdown} is an alias.
 }
 \examples{
-\dontrun{use_bookdown("my-awesome-book", "~/documents")}
-\dontrun{use_bookdown_action(".")}
+\dontrun{create_bookdown("my-awesome-book", "~/documents")}
 }
