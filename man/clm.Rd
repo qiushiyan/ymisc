@@ -40,11 +40,15 @@ clm(formula, coef_mat, d, data = NULL, t_test = FALSE, ...)
 general hypothesis testing in multiple linear regression, where H0: C * beta = d and H1: otherwise
 }
 \examples{
-df <- read.table("http://www.stat.ucla.edu/~nchristo/statistics_c173_c273/jura.txt", header=TRUE)
+df <- read.table("http://www.stat.ucla.edu/~nchristo/statistics_c173_c273/jura.txt", header = TRUE)
 df <- df[, c(-1, -2, -3, -4)]
-C <-  matrix(
- c(0, 1, 1, 0, 0, -3, 0,
-   0, 0, 0, 1, 0,  1, 1), nrow = 2, byrow = TRUE)
+C <- matrix(
+  c(
+    0, 1, 1, 0, 0, -3, 0,
+    0, 0, 0, 1, 0, 1, 1
+  ),
+  nrow = 2, byrow = TRUE
+)
 d <- c(2, 3)
 clm(Pb ~ ., data = df, coef_mat = C, d = d)
 }

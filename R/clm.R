@@ -25,18 +25,21 @@
 #' @export
 #'
 #' @examples
-#' df <- read.table("http://www.stat.ucla.edu/~nchristo/statistics_c173_c273/jura.txt", header=TRUE)
+#' df <- read.table("http://www.stat.ucla.edu/~nchristo/statistics_c173_c273/jura.txt", header = TRUE)
 #' df <- df[, c(-1, -2, -3, -4)]
-#' C <-  matrix(
-#'  c(0, 1, 1, 0, 0, -3, 0,
-#'    0, 0, 0, 1, 0,  1, 1), nrow = 2, byrow = TRUE)
+#' C <- matrix(
+#'   c(
+#'     0, 1, 1, 0, 0, -3, 0,
+#'     0, 0, 0, 1, 0, 1, 1
+#'   ),
+#'   nrow = 2, byrow = TRUE
+#' )
 #' d <- c(2, 3)
 #' clm(Pb ~ ., data = df, coef_mat = C, d = d)
-clm <- function(formula, coef_mat, d, data = NULL,  t_test = FALSE, ...) {
+clm <- function(formula, coef_mat, d, data = NULL, t_test = FALSE, ...) {
   if (is.null(data)) {
     stop('Need argument "data" to fit the model.')
-  }
-  else {
+  } else {
     lm_obj <- lm(formula, data = data, ...)
   }
   X <- model.matrix(lm_obj)
@@ -62,19 +65,22 @@ clm <- function(formula, coef_mat, d, data = NULL,  t_test = FALSE, ...) {
   se2_c <- sum((e_c)^2) / (n - p + m)
 
   if (!t_test) {
-    F_stat <- t(constraint) %*%  CXXC_inv %*% constraint / (m * se2)
+    F_stat <- t(constraint) %*% CXXC_inv %*% constraint / (m * se2)
     p_value <- 1 - pf(as.numeric(F_stat), df1 = m, df2 = n - p)
-    list(coefficients = beta_hatc, residuals = e_c, fitted_values = fitted_values,
-         df_residual = n - p + m, sigma2 = se2_c,
-         F_stat = as.numeric(F_stat), p_value = p_value,
-         y = y, x = X, model = cbind(y, X))
-  }
-  else {
+    list(
+      coefficients = beta_hatc, residuals = e_c, fitted_values = fitted_values,
+      df_residual = n - p + m, sigma2 = se2_c,
+      F_stat = as.numeric(F_stat), p_value = p_value,
+      y = y, x = X, model = cbind(y, X)
+    )
+  } else {
     t_stat <- constraint %*% sqrt(CXXC_inv) / (sqrt(se2))
     p_value <- 2 * (1 - pt(as.numeric(t_stat), df = n - p))
-    list(coefficients = beta_hatc, residuals = e_c, fitted_values = fitted_values,
-         df_residual = n - p - 1, sigma2 = se2_c,
-         t_stat = as.numeric(t_stat), p_value = p_value,
-         y = y, x = X, model = cbind(y, X))
+    list(
+      coefficients = beta_hatc, residuals = e_c, fitted_values = fitted_values,
+      df_residual = n - p - 1, sigma2 = se2_c,
+      t_stat = as.numeric(t_stat), p_value = p_value,
+      y = y, x = X, model = cbind(y, X)
+    )
   }
 }
