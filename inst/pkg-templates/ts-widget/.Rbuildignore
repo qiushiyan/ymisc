@@ -1,0 +1,9 @@
+^widgetexample\.Rproj$
+^\.Rproj\.user$
+^srcts$
+^node_modules$
+^package\.json$
+^pnpm-lock\.json$
+^yarn\.lock$
+^yarn-error\.log$
+^\.yarn$
