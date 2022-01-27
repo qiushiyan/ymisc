@@ -69,7 +69,7 @@
 <h2 id="scaffold-a-bs4_book-format-bookdown-project-with-automatic-deployment">Scaffold a <code>bs4_book</code> format bookdown project with automatic deployment<a class="anchor" aria-label="anchor" href="#scaffold-a-bs4_book-format-bookdown-project-with-automatic-deployment"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/use_bookdown.html">use_bookdown</a></span><span class="op">(</span><span class="st">"my-awesome-book"</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, gh_action <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">use_bookdown</span><span class="op">(</span><span class="st">"my-awesome-book"</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, gh_action <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Note that the github action for deploying the book to github pages is designed to use <code>renv</code> for installing dependencies. So you’ll need to run <code>renv::init()</code> in the new project directory before it can work.</p>
 </div>
 <div class="section level2">
@@ -258,7 +258,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

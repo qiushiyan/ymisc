@@ -34,6 +34,12 @@
     <loc>https://qiushiyan.github.io/ymisc/reference/pipe.html</loc>
   </url>
   <url>
+    <loc>https://qiushiyan.github.io/ymisc/reference/scaffold_bookdown.html</loc>
+  </url>
+  <url>
+    <loc>https://qiushiyan.github.io/ymisc/reference/scaffold_widget.html</loc>
+  </url>
+  <url>
     <loc>https://qiushiyan.github.io/ymisc/reference/set_file_enc.html</loc>
   </url>
   <url>
@@ -41,9 +47,6 @@
   </url>
   <url>
     <loc>https://qiushiyan.github.io/ymisc/reference/theme_clean.html</loc>
-  </url>
-  <url>
-    <loc>https://qiushiyan.github.io/ymisc/reference/use_bookdown.html</loc>
   </url>
   <url>
     <loc>https://qiushiyan.github.io/ymisc/reference/use_gh_action.html</loc>
