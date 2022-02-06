@@ -3,7 +3,7 @@
 #' @param ... additional named arguments passed to knitr::opts_chunk$set()
 #'
 #' @export
-set_knitr_optons <- function(...) {
+set_knitr_options <- function(...) {
   knitr::opts_chunk$set(
     message = FALSE,
     warning = FALSE,
