@@ -1,0 +1,31 @@
+project:
+  type: book
+
+execute:
+  freeze: auto
+
+book:
+  title: "bookexample"
+  author: "Qiushi Yan"
+  site-url: https://qiushiyan.github.io/bookexample/
+  repo-url: https://github.com/qiushiyan/bookexample/
+  repo-branch: main
+  repo-actions: [edit]
+  page-navigation: true
+  search:
+    location: navbar
+    type: overlay
+  chapters:
+    - index.qmd
+
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    echo: false
+
+format:
+  html:
+    theme: cosmo
+    fig-width: 8
+    fig-height: 6

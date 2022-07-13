@@ -1,0 +1,10 @@
+.Rproj.user
+*.md
+*.rds
+*.html
+renv/*
+!renv/activate.R
+_book
+venv
+
+/.quarto/
