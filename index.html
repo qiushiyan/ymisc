@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ymisc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -60,106 +60,75 @@
 <div class="page-header"><h1 id="ymisc">ymisc<a class="anchor" aria-label="anchor" href="#ymisc"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p>This package contains my personal miscellaneous functions.</p>
 <p>You can install the package from Github via</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"enixam/ymisc"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"enixam/ymisc"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="scaffold-a-bs4_book-format-bookdown-project-with-automatic-deployment">Scaffold a <code>bs4_book</code> format bookdown project with automatic deployment<a class="anchor" aria-label="anchor" href="#scaffold-a-bs4_book-format-bookdown-project-with-automatic-deployment"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">use_bookdown</span><span class="op">(</span><span class="st">"my-awesome-book"</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, gh_action <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">use_bookdown</span><span class="op">(</span><span class="st">"my-awesome-book"</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, gh_action <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Note that the github action for deploying the book to github pages is designed to use <code>renv</code> for installing dependencies. So you’ll need to run <code>renv::init()</code> in the new project directory before it can work.</p>
 </div>
 <div class="section level2">
 <h2 id="general-hypothesis-testing-in-multiple-linear-regression">General hypothesis testing in multiple linear regression<a class="anchor" aria-label="anchor" href="#general-hypothesis-testing-in-multiple-linear-regression"></a>
 </h2>
-<!-- A general hypothesis in multiple linear regression can be expressed in the following matrix form  -->
-<!-- $$ -->
-<!-- C\boldsymbol{\beta} = \boldsymbol{d} -->
-<!-- $$ -->
-<!-- where $C$ is an $m \times n$ matrix, $\boldsymbol{\beta}$ is an $p$-dimensional (including the intercept) parameter to estimate, and $\boldsymbol{d}$ is an $m$-dimensional vector. $C$ and $\boldsymbol{d}$ are specified by the hypothesis to be tested. For example, if we want to test the following hypothesis with two constraints for a linear model with 3 predictors  -->
-<!-- $$ -->
-<!-- \begin{aligned} -->
-<!-- H_0&: \beta_1 + \beta_3 = 0 \quad \text{and} \quad \beta_2 = 3   \\ -->
-<!-- H_1&: \text{otherwise}  -->
-<!-- \end{aligned} -->
-<!-- $$ -->
-<!-- Then this hypothesis can be expressed as  -->
-<!-- $$ -->
-<!-- \begin{bmatrix} -->
-<!-- 0 & 1 & 0 & 1 \\ -->
-<!-- 0 & 0 & 1 & 0 \\ -->
-<!-- \end{bmatrix} -->
-<!-- \begin{bmatrix} -->
-<!-- \beta_0 \\ -->
-<!-- \beta_1 \\ -->
-<!-- \beta_2 \\ -->
-<!-- \beta_3 \\ -->
-<!-- \end{bmatrix} -->
-<!-- =  -->
-<!-- \begin{bmatrix} -->
-<!-- 0 \\ -->
-<!-- 3 \\ -->
-<!-- \end{bmatrix} -->
-<!-- $$ -->
-<!-- `clm` returns the F-statistic and p value associated with such test. It also returns the estimated $\sigma^2$ and $\boldsymbol{\beta}$ under $H_0$, i.e. the equality constrained model.  -->
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://qiushiyan.github.io/ymisc">ymisc</a></span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"http://www.stat.ucla.edu/~nchristo/statistics_c173_c273/jura.txt"</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span>
-<span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>,
-    <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
-  nrow <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span>
-
-<span class="va">clm_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/clm.html">clm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span> <span class="va">Cd</span> <span class="op">+</span> <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span>, coef_mat <span class="op">=</span> <span class="va">C</span>, d <span class="op">=</span> <span class="va">d</span><span class="op">)</span>
-
-<span class="co"># F statistic and p-value of</span>
-<span class="va">clm_res</span><span class="op">$</span><span class="va">F_stat</span>
-<span class="co">#&gt; [1] 13.47309</span>
-<span class="va">clm_res</span><span class="op">$</span><span class="va">p_value</span>
-<span class="co">#&gt; [1] 2.291637e-06</span>
-
-<span class="co"># estimate of beta under H_0</span>
-<span class="va">clm_res</span><span class="op">$</span><span class="va">coefficients</span>
-<span class="co">#&gt;                   [,1]</span>
-<span class="co">#&gt; (Intercept) 16.2167926</span>
-<span class="co">#&gt; Cd          -0.2993491</span>
-<span class="co">#&gt; Co           3.0000000</span>
-<span class="co">#&gt; Cr           0.2993491</span></code></pre></div>
+<!-- A general hypothesis in multiple linear regression can be expressed in the following matrix form  --><!-- $$ --><!-- C\boldsymbol{\beta} = \boldsymbol{d} --><!-- $$ --><!-- where $C$ is an $m \times n$ matrix, $\boldsymbol{\beta}$ is an $p$-dimensional (including the intercept) parameter to estimate, and $\boldsymbol{d}$ is an $m$-dimensional vector. $C$ and $\boldsymbol{d}$ are specified by the hypothesis to be tested. For example, if we want to test the following hypothesis with two constraints for a linear model with 3 predictors  --><!-- $$ --><!-- \begin{aligned} --><!-- H_0&: \beta_1 + \beta_3 = 0 \quad \text{and} \quad \beta_2 = 3   \\ --><!-- H_1&: \text{otherwise}  --><!-- \end{aligned} --><!-- $$ --><!-- Then this hypothesis can be expressed as  --><!-- $$ --><!-- \begin{bmatrix} --><!-- 0 & 1 & 0 & 1 \\ --><!-- 0 & 0 & 1 & 0 \\ --><!-- \end{bmatrix} --><!-- \begin{bmatrix} --><!-- \beta_0 \\ --><!-- \beta_1 \\ --><!-- \beta_2 \\ --><!-- \beta_3 \\ --><!-- \end{bmatrix} --><!-- =  --><!-- \begin{bmatrix} --><!-- 0 \\ --><!-- 3 \\ --><!-- \end{bmatrix} --><!-- $$ --><!-- `clm` returns the F-statistic and p value associated with such test. It also returns the estimated $\sigma^2$ and $\boldsymbol{\beta}$ under $H_0$, i.e. the equality constrained model.  --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://qiushiyan.github.io/ymisc">ymisc</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"http://www.stat.ucla.edu/~nchristo/statistics_c173_c273/jura.txt"</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>,</span>
+<span>    <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  nrow <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">clm_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/clm.html">clm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span> <span class="va">Cd</span> <span class="op">+</span> <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span>, coef_mat <span class="op">=</span> <span class="va">C</span>, d <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># F statistic and p-value of</span></span>
+<span><span class="va">clm_res</span><span class="op">$</span><span class="va">F_stat</span></span>
+<span><span class="co">#&gt; [1] 13.47309</span></span>
+<span><span class="va">clm_res</span><span class="op">$</span><span class="va">p_value</span></span>
+<span><span class="co">#&gt; [1] 2.291637e-06</span></span>
+<span></span>
+<span><span class="co"># estimate of beta under H_0</span></span>
+<span><span class="va">clm_res</span><span class="op">$</span><span class="va">coefficients</span></span>
+<span><span class="co">#&gt;                   [,1]</span></span>
+<span><span class="co">#&gt; (Intercept) 16.2167926</span></span>
+<span><span class="co">#&gt; Cd          -0.2993491</span></span>
+<span><span class="co">#&gt; Co           3.0000000</span></span>
+<span><span class="co">#&gt; Cr           0.2993491</span></span></code></pre></div>
 <p>In cases of testing significance of individual parameters, t test can be used by setting <code>t_test = TRUE</code>. Suppose we want to obtain the t statistic for <embed src="https://ibm.codecogs.com/png.latex?%5Cbeta_1" title="\beta_1"></embed></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">d</span> <span class="op">&lt;-</span> <span class="fl">0</span>
-<span class="va">clm_t</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/clm.html">clm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span> <span class="va">Cd</span> <span class="op">+</span> <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span>, coef_mat <span class="op">=</span> <span class="va">C</span>, d <span class="op">=</span> <span class="va">d</span>, t_test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="va">clm_t</span><span class="op">$</span><span class="va">t_stat</span>
-<span class="co">#&gt; [1] 1.842206</span>
-<span class="va">clm_t</span><span class="op">$</span><span class="va">p_value</span>
-<span class="co">#&gt; [1] 0.06627892</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="va">clm_t</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/clm.html">clm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span> <span class="va">Cd</span> <span class="op">+</span> <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span>, coef_mat <span class="op">=</span> <span class="va">C</span>, d <span class="op">=</span> <span class="va">d</span>, t_test <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">clm_t</span><span class="op">$</span><span class="va">t_stat</span></span>
+<span><span class="co">#&gt; [1] 1.842206</span></span>
+<span><span class="va">clm_t</span><span class="op">$</span><span class="va">p_value</span></span>
+<span><span class="co">#&gt; [1] 0.06627892</span></span></code></pre></div>
 <p>We can verify that the t statistic is the square root of the F statistic, and the p-value is the same.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">clm_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/clm.html">clm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span> <span class="va">Cd</span> <span class="op">+</span> <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span>, coef_mat <span class="op">=</span> <span class="va">C</span>, d <span class="op">=</span> <span class="va">d</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">clm_f</span><span class="op">$</span><span class="va">F_stat</span><span class="op">)</span> <span class="co"># same as t statistic</span>
-<span class="co">#&gt; [1] 1.842206</span>
-<span class="va">clm_f</span><span class="op">$</span><span class="va">p_value</span>
-<span class="co">#&gt; [1] 0.06627892</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">clm_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/clm.html">clm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span> <span class="va">Cd</span> <span class="op">+</span> <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span>, coef_mat <span class="op">=</span> <span class="va">C</span>, d <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">clm_f</span><span class="op">$</span><span class="va">F_stat</span><span class="op">)</span> <span class="co"># same as t statistic</span></span>
+<span><span class="co">#&gt; [1] 1.842206</span></span>
+<span><span class="va">clm_f</span><span class="op">$</span><span class="va">p_value</span></span>
+<span><span class="co">#&gt; [1] 0.06627892</span></span></code></pre></div>
 <p>An alternative is using <code>anova</code> for nested models, which yields the same result</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span>  <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span> <span class="va">Cd</span> <span class="op">+</span> <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Analysis of Variance Table</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model 1: Pb ~ Co + Cr</span>
-<span class="co">#&gt; Model 2: Pb ~ Cd + Co + Cr</span>
-<span class="co">#&gt;   Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  </span>
-<span class="co">#&gt; 1    356 365976                              </span>
-<span class="co">#&gt; 2    355 362510  1    3465.5 3.3937 0.06628 .</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span>  <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Pb</span> <span class="op">~</span> <span class="va">Cd</span> <span class="op">+</span> <span class="va">Co</span> <span class="op">+</span> <span class="va">Cr</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model 1: Pb ~ Co + Cr</span></span>
+<span><span class="co">#&gt; Model 2: Pb ~ Cd + Co + Cr</span></span>
+<span><span class="co">#&gt;   Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  </span></span>
+<span><span class="co">#&gt; 1    356 365976                              </span></span>
+<span><span class="co">#&gt; 2    355 362510  1    3465.5 3.3937 0.06628 .</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="write-a-data-frame-groupwise">Write a data frame groupwise<a class="anchor" aria-label="anchor" href="#write-a-data-frame-groupwise"></a>
@@ -167,21 +136,21 @@
 <p>There are times when we may wish to write different groups of a data frame to separate files. I used to turn to <code>puurrr::group_walk</code> for this, but it is not that easy to control names of such files. <code>group_write</code> is a wrapper of<code>group_walk</code> and utilizes grouping functions from dplyr to automate this task as well as providing informative files names.</p>
 <p>Suppose we would like to divide passengers in the Titanic according to their age and gender, this would result in 4 groups</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span>
-<span class="va">titanic</span> <span class="op">&lt;-</span> <span class="va">titanic</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span>, <span class="va">titanic</span><span class="op">$</span><span class="va">Freq</span><span class="op">)</span>, <span class="op">-</span><span class="fl">5</span><span class="op">]</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">titanic</span>, <span class="va">Sex</span>, <span class="va">Age</span><span class="op">)</span>
-<span class="co">#&gt;      Sex   Age    n</span>
-<span class="co">#&gt; 1   Male Child   64</span>
-<span class="co">#&gt; 2   Male Adult 1667</span>
-<span class="co">#&gt; 3 Female Child   45</span>
-<span class="co">#&gt; 4 Female Adult  425</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
+<span><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="va">titanic</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span>, <span class="va">titanic</span><span class="op">$</span><span class="va">Freq</span><span class="op">)</span>, <span class="op">-</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">titanic</span>, <span class="va">Sex</span>, <span class="va">Age</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      Sex   Age    n</span></span>
+<span><span class="co">#&gt; 1   Male Child   64</span></span>
+<span><span class="co">#&gt; 2   Male Adult 1667</span></span>
+<span><span class="co">#&gt; 3 Female Child   45</span></span>
+<span><span class="co">#&gt; 4 Female Adult  425</span></span></code></pre></div>
 <p>Now use <code>group_write</code> to output this 4 groups into different csv files:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/group_write.html">group_write</a></span><span class="op">(</span><span class="va">titanic</span>, <span class="va">Sex</span>, <span class="va">Age</span>, dir <span class="op">=</span> <span class="va">path</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">path</span>, <span class="st">"\\.csv$"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "titanic-Female-Adult.csv" "titanic-Female-Child.csv"</span>
-<span class="co">#&gt; [3] "titanic-Male-Adult.csv"   "titanic-Male-Child.csv"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/group_write.html">group_write</a></span><span class="op">(</span><span class="va">titanic</span>, <span class="va">Sex</span>, <span class="va">Age</span>, dir <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">path</span>, <span class="st">"\\.csv$"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "titanic-Female-Adult.csv" "titanic-Female-Child.csv"</span></span>
+<span><span class="co">#&gt; [3] "titanic-Male-Adult.csv"   "titanic-Male-Child.csv"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="set-multiple-file-encodings-at-once">Set multiple file encodings at once<a class="anchor" aria-label="anchor" href="#set-multiple-file-encodings-at-once"></a>
@@ -193,13 +162,13 @@
 </h2>
 <p>I plan to include more custom ggplot2 themes in this package. Currently there is only one light theme, <code><a href="reference/theme_clean.html">theme_clean()</a></code></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="va">mtcars</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">mpg</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_clean.html">theme_clean</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="va">mtcars</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">mpg</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_clean.html">theme_clean</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -208,10 +177,10 @@
 </h1>
 <p>intended to use with chunk option <code>results='asis'</code></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># convert multiple scripts</span>
-<span class="fu"><a href="reference/code_blocks.html">code_blocks</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">dir1</span>, <span class="va">dir2</span>, <span class="va">dir3</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># convert single script</span>
-<span class="fu"><a href="reference/code_blocks.html">code_block</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># convert multiple scripts</span></span>
+<span><span class="fu">code_blocks</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">dir1</span>, <span class="va">dir2</span>, <span class="va">dir3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># convert single script</span></span>
+<span><span class="fu">code_block</span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span></code></pre></div>
 </div>
 
   </div>
@@ -258,7 +227,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 2.0.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-02-06T20:08Z
+last_built: 2022-09-10T20:58Z
 urls:
   reference: https://qiushiyan.github.io/ymisc/reference
   article: https://qiushiyan.github.io/ymisc/articles
