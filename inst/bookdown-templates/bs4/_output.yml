@@ -1,5 +1,5 @@
 bookdown::bs4_book:
   theme:
     primary: "#4D6F8D"
-  repo: https://github.com/qiushiyan/bookexample
+  repo: https://github.com/qiushiyan/example
   css: style.css

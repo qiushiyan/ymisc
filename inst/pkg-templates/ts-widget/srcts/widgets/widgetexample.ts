@@ -1,5 +1,5 @@
 HTMLWidgets.widget({
-  name: "widgetexample",
+  name: "example",
 
   type: "output",
 

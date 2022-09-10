@@ -1,5 +1,4 @@
 #' Utilities functions for working with github
-#' @description
 #'
 #' @param repo user/repo
 #' @param file file
@@ -15,7 +14,7 @@ gh_raw_url <- function(repo, file, branch = "main", lfs = FALSE) {
   if (!lfs) {
     glue::glue("https://raw.githubusercontent.com/{repo}/{branch}/{file}")
   } else {
-    if (branch == "main") branch = "master"
+    if (branch == "main") branch <- "master"
     glue::glue("https://media.githubusercontent.com/media/{repo}/{branch}/{file}")
   }
 }

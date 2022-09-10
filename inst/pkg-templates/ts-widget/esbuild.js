@@ -5,7 +5,7 @@ esbuild
   .build({
     entryPoints: [path.join(__dirname, "srcts/index.ts")],
     bundle: true,
-    outfile: path.join(__dirname, "inst/htmlwidgets/widgetexample.js"),
+    outfile: path.join(__dirname, "inst/htmlwidgets/example.js"),
     platform: "node",
     format: "cjs",
     external: ["Shiny", "HTMLWidgets"],

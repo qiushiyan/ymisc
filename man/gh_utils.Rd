@@ -19,7 +19,7 @@ gh_raw_url(repo, file, branch = "main", lfs = FALSE)
 raw file url for downloading
 }
 \description{
-
+Utilities functions for working with github
 }
 \examples{
 url <- gh_raw_url("qiushiyan/blog-data", "codes.csv", lfs = TRUE)

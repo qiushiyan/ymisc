@@ -1,31 +1,27 @@
 project:
   type: book
 
-execute:
-  freeze: auto
-
+freeze: auto
+highlight-style: nord
 book:
-  title: "bookexample"
+  title: "Notes for example"
   author: "Qiushi Yan"
-  site-url: https://qiushiyan.github.io/bookexample/
-  repo-url: https://github.com/qiushiyan/bookexample/
-  repo-branch: main
-  repo-actions: [edit]
-  page-navigation: true
-  search:
-    location: navbar
-    type: overlay
+  date: now
+  repo-url: "https://github.com/qiushiyan/example"
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
+    - part: "Part"
+      chapters:
+        - part1.qmd
 
-knitr:
-  opts_chunk:
-    collapse: true
-    comment: "#>"
-    echo: false
+code-overflow: wrap
 
 format:
   html:
-    theme: cosmo
-    fig-width: 8
-    fig-height: 6
+    theme:
+      light: [cosmo, style/light.scss]
+      dark: [cosmo, style/dark.scss]
+
+jupyter: julia-1.8
+editor: visual
