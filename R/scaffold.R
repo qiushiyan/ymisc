@@ -96,11 +96,16 @@ scaffold_widget <- function(...) {
     scaffold(dir = "pkg-templates/ts-widget", ...)
 }
 
-
+#' Scaffold a quarto book project
+#' @export
+#' @rdname scaffold
 scaffold_quarto_book <- function(...) {
     scaffold(dir = "quarto-templates/book", ...)
 }
 
+#' Scaffolda bookdown bs4 book project
+#' @export
+#' @rdname scaffold
 scaffold_bookdown_book <- function(...) {
     scaffold(dir = "bookdown-templates/bs4", ...)
 }

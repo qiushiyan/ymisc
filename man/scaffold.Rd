@@ -3,6 +3,8 @@
 \name{scaffold}
 \alias{scaffold}
 \alias{scaffold_widget}
+\alias{scaffold_quarto_book}
+\alias{scaffold_bookdown_book}
 \title{Scaffold directories}
 \usage{
 scaffold(
@@ -14,6 +16,10 @@ scaffold(
 )
 
 scaffold_widget(...)
+
+scaffold_quarto_book(...)
+
+scaffold_bookdown_book(...)
 }
 \arguments{
 \item{dir}{directory to copy, relative to to inst/}
