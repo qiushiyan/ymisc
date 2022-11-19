@@ -18,15 +18,12 @@ set_file_enc <- function(path, from = "", to = "UTF-8") {
       msg <- crayon::cyan(sprintf("Use %s as the original encoding", enc_likely))
       message(msg)
       writeLines(out, file(out_file, encoding = to))
-    }
-    else {
+    } else {
       out <- iconv(readLines(file), from = from, to = to)
       writeLines(out, file(out_file, encoding = to))
     }
     invisible(out_file)
-  }
-
-  else {
+  } else {
     file_names <- list.files(path)
     out_dir <- paste(path, to, sep = "/")
     dir.create(out_dir)
@@ -39,12 +36,10 @@ set_file_enc <- function(path, from = "", to = "UTF-8") {
         msg <- crayon::cyan(sprintf("Use %s as the original encoding", enc_likely))
         message(msg)
         writeLines(out, file(file_write_path, encoding = to))
-      }
-      else {
+      } else {
         out <- iconv(readLines(file), from = from, to = to)
         writeLines(out, file(out_file, encoding = to))
       }
     }
   }
 }
-

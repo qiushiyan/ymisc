@@ -20,71 +20,71 @@ scaffold <- function(dir,
                      rstudio = rstudioapi::isAvailable(),
                      open = rlang::is_interactive(),
                      is_package = FALSE) {
-    path <- suppressWarnings(normalizePath(path, mustWork = FALSE))
-    proj_name <- path_file(path)
+  path <- suppressWarnings(normalizePath(path, mustWork = FALSE))
+  proj_name <- path_file(path)
 
-    if (fs::dir_exists(path)) {
-        delete_dir <- usethis::ui_yeah("path already exists, overwrite it?", yes = "yes", no = "no")
-        if (delete_dir) {
-            unlink(path, recursive = TRUE)
-        } else {
-            return(NULL)
-        }
-    }
-    cli::cli_progress_step("Creating project directory")
-
-    if (is_package) {
-        usethis::create_package(path)
+  if (fs::dir_exists(path)) {
+    delete_dir <- usethis::ui_yeah("path already exists, overwrite it?", yes = "yes", no = "no")
+    if (delete_dir) {
+      unlink(path, recursive = TRUE)
     } else {
-        usethis::create_project(
-            path = path,
-            open = FALSE,
-        )
+      return(NULL)
     }
+  }
+  cli::cli_progress_step("Creating project directory")
 
-    usethis::local_project(path, force = TRUE)
+  if (is_package) {
+    usethis::create_package(path)
+  } else {
+    usethis::create_project(
+      path = path,
+      open = FALSE,
+    )
+  }
 
-    cli::cli_progress_step("Copying files")
-    from <- file_sys(dir)
-    # Copy over whole directory
-    fs::dir_copy(path = from, new_path = path, overwrite = TRUE)
+  usethis::local_project(path, force = TRUE)
 
-    # replace with book name
-    copied_files <- list.files(
-        path = from,
-        full.names = FALSE,
-        all.files = TRUE,
-        recursive = TRUE
+  cli::cli_progress_step("Copying files")
+  from <- file_sys(dir)
+  # Copy over whole directory
+  fs::dir_copy(path = from, new_path = path, overwrite = TRUE)
+
+  # replace with book name
+  copied_files <- list.files(
+    path = from,
+    full.names = FALSE,
+    all.files = TRUE,
+    recursive = TRUE
+  )
+
+  for (f in copied_files) {
+    copied_file <- file.path(path, f)
+    replace_word(
+      file = copied_file,
+      pattern = "example",
+      replace = proj_name
     )
 
-    for (f in copied_files) {
-        copied_file <- file.path(path, f)
-        replace_word(
-            file = copied_file,
-            pattern = "example",
-            replace = proj_name
-        )
+    replace_name(
+      file = copied_file,
+      pattern = "example",
+      replace = proj_name
+    )
+  }
 
-        replace_name(
-            file = copied_file,
-            pattern = "example",
-            replace = proj_name
-        )
+  cli::cli_progress_step("Creating project directory")
+  clean_files(path)
+
+  if (open) {
+    if (usethis::proj_activate(usethis::proj_get())) {
+      # working pathectory/active project already set; clear the scheduled
+      # restoration of the original project
+      withr::deferred_clear()
     }
+  }
 
-    cli::cli_progress_step("Creating project directory")
-    clean_files(path)
-
-    if (open) {
-        if (usethis::proj_activate(usethis::proj_get())) {
-            # working pathectory/active project already set; clear the scheduled
-            # restoration of the original project
-            withr::deferred_clear()
-        }
-    }
-
-    cli::cli_progress_done("Done")
-    invisible(usethis::proj_get())
+  cli::cli_progress_done("Done")
+  invisible(usethis::proj_get())
 }
 
 #' Scaffold a widget package
@@ -93,19 +93,19 @@ scaffold <- function(dir,
 #' @export
 #' @rdname scaffold
 scaffold_widget <- function(...) {
-    scaffold(dir = "pkg-templates/ts-widget", ...)
+  scaffold(dir = "pkg-templates/ts-widget", ...)
 }
 
 #' Scaffold a quarto book project
 #' @export
 #' @rdname scaffold
 scaffold_quarto_book <- function(...) {
-    scaffold(dir = "quarto-templates/book", ...)
+  scaffold(dir = "quarto-templates/book", ...)
 }
 
 #' Scaffolda bookdown bs4 book project
 #' @export
 #' @rdname scaffold
 scaffold_bookdown_book <- function(...) {
-    scaffold(dir = "bookdown-templates/bs4", ...)
+  scaffold(dir = "bookdown-templates/bs4", ...)
 }

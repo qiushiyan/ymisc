@@ -10,7 +10,7 @@ use_gh_action <- function(name) {
   }
 
   if (!(path_ext(name) %in% c("yml", "yaml"))) {
-    path_ext(name) = "yml"
+    path_ext(name) <- "yml"
   }
 
   action_path <- path_join(c(gh_path, name))
@@ -18,7 +18,7 @@ use_gh_action <- function(name) {
 
   for (f in targets) {
     if (grepl(name, path_file(f))) {
-       file_copy(f, new_path = action_path)
+      file_copy(f, new_path = action_path)
     }
     break
   }

@@ -22,9 +22,7 @@ group_write <- function(df, ..., dir = "") {
   gf <- dplyr::group_by(df, ...)
   if (!dplyr::is.grouped_df(gf)) {
     stop("You need to specify at least one grouping variable to split the data frame with.")
-  }
-
-  else {
+  } else {
     keys <- dplyr::group_keys(gf)
     names <- vector("list", 0)
     for (i in 1:nrow(keys)) {
@@ -35,12 +33,10 @@ group_write <- function(df, ..., dir = "") {
     names(out) <- names
     if (dir == "") {
       purrr::iwalk(out, ~ readr::write_csv(.x, paste0(.y, ".csv")))
-    }
-    else {
+    } else {
       if (dir.exists(dir)) {
         purrr::iwalk(out, ~ readr::write_csv(.x, paste0(dir, "/", .y, ".csv")))
-      }
-      else {
+      } else {
         dir.create(dir)
         purrr::iwalk(out, ~ readr::write_csv(.x, paste0(dir, "/", .y, ".csv")))
       }
