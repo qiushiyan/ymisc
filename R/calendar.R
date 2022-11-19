@@ -194,7 +194,7 @@ fetch_repo <- function(repo) {
   ) |> httr::content()
   tibble::tibble(
     type = "project",
-    link = url,
+    link = stringr::str_glue("https://github.com/{data$full_name}"),
     tip = stringr::str_glue("<b>Project</b>: {data$name}<br/>{data$description}"),
     date = as.Date(data$created_at),
   )
