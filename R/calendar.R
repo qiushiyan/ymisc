@@ -73,7 +73,7 @@ calendar_plot <- function(data = calendar_data(), font = "Atkinson Hyperlegible"
     ) +
     guides(
       alpha = "none",
-      fill = guide_legend(nrow = 1, keywidth = 1.5, keyheight = 1.5)
+      fill = guide_legend(title = NULL, nrow = 1, keywidth = 1.5, keyheight = 1.5)
     ) +
     labs(x = NULL, y = NULL)
 
